@@ -14,9 +14,9 @@ class ObservationController extends Controller
      */
     public function index()
     {
-        $obs = Observation::all();
+        $observations = Observation::all();
 
-        return view ('observation.index' , compact('obs'));
+        return view ('observation.index' , compact('observations'));
         
         
         
@@ -29,7 +29,7 @@ class ObservationController extends Controller
      */
     public function create()
     {
-        //
+        return view ('observation.create' );
     }
 
     /**
@@ -40,7 +40,25 @@ class ObservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $observation = new Observation;
+       
+
+        $observation->title = $request->title;
+        $observation->desc = $request->desc;
+        $observation->source = $request->source;
+        $observation->observer = $request->observer;
+        $observation->recommended_corrective_action = $request->CArecommended;
+        $observation->corrective_action_taken = $request->CAtaken;
+        $observation->corrective_action_date = $request->date;
+        $observation->status = $request->status;
+        $observation->responsible_party = $request->resposible;
+        $observation->priority = $request->priority;
+
+
+       $observation->save();
+
+        return redirect('observations/')->with('message' , 'observation posted');
     }
 
     /**
@@ -49,9 +67,9 @@ class ObservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Observation $observation)
     {
-        //
+        return view ('observation.show' , compact('observation'));
     }
 
     /**

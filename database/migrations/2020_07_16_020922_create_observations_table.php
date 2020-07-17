@@ -20,11 +20,11 @@ class CreateObservationsTable extends Migration
             $table->text('desc');
             $table->string('source');
             $table->string('observer')->nullable();
-            $table->text('recommended corrective action')->nullable();
+            $table->text('recommended_corrective_action')->nullable();
             $table->string('priority')->nullable();
-            $table->string('responsible party')->nullable();
-            $table->text('corrective action taken')->nullable();
-            $table->time('corrective action date')->nullable();
+            $table->string('responsible_party')->nullable();
+            $table->text('corrective_action_taken')->nullable();
+            $table->text('corrective_action_date')->nullable();
             $table->string('status');
             $table->string('photo')->nullable();
             $table->timestamps();

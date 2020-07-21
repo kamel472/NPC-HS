@@ -92,4 +92,6 @@
         mainApp.wizard_fun();
        
     });
+
+    
 }(jQuery));

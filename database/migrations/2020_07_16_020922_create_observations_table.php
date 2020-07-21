@@ -16,11 +16,10 @@ class CreateObservationsTable extends Migration
         Schema::create('observations', function (Blueprint $table) {
         
             $table->id();
-            $table->string('title');
             $table->text('desc');
+            $table->string('category');
             $table->string('source');
             $table->string('observer')->nullable();
-            $table->text('recommended_corrective_action')->nullable();
             $table->string('priority')->nullable();
             $table->string('responsible_party')->nullable();
             $table->text('corrective_action_taken')->nullable();

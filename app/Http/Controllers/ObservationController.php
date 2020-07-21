@@ -17,9 +17,7 @@ class ObservationController extends Controller
         $observations = Observation::all();
 
         return view ('observation.index' , compact('observations'));
-        
-        
-        
+                
     }
 
     /**
@@ -43,19 +41,30 @@ class ObservationController extends Controller
         
         $observation = new Observation;
        
-
-        $observation->title = $request->title;
         $observation->desc = $request->desc;
+        $observation->category = $request->category;
         $observation->source = $request->source;
         $observation->observer = $request->observer;
-        $observation->recommended_corrective_action = $request->CArecommended;
         $observation->corrective_action_taken = $request->CAtaken;
         $observation->corrective_action_date = $request->date;
-        $observation->status = $request->status;
+        $observation->status = "لم يتم الحل";
         $observation->responsible_party = $request->resposible;
         $observation->priority = $request->priority;
 
+        if($request->hasFile('image')){
+        $image = $request->image;
+            
+            $fileName= $image->getClientOriginalName();
+            $explode= explode(".",$fileName );
+            $fileActualExt = strtolower(end($explode));
+            $fileActualName= $explode[0];
+            $fileUniqueName = $fileActualName.$observation->id.'.'.$fileActualExt;
+    
+            $image->storeAs('images', $fileUniqueName , 'public');
 
+            $observation->photo = $fileUniqueName;
+        }
+ 
        $observation->save();
 
         return redirect('observations/')->with('message' , 'observation posted');
@@ -78,9 +87,9 @@ class ObservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Observation $observation)
     {
-        //
+        return view ('observation.edit' , compact('observation'));
     }
 
     /**
@@ -90,9 +99,13 @@ class ObservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Observation $observation)
     {
-        //
+       $status = $request->status;
+       $CAtaken = $request->CAtaken;
+       $date = $request->date;
+       $observation->update(['status'=>$status , 'corrective_action_taken'=>$CAtaken , 'corrective_action_date'=>$date ]);
+       return view ('observation.show' , compact('observation'));
     }
 
     /**
@@ -101,8 +114,10 @@ class ObservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Observation $observation)
     {
-        //
+        $observation->delete();
+        return redirect('observations/');
+
     }
 }

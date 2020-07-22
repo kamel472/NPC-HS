@@ -18,4 +18,10 @@ Route::get('/', function () {
 });
 
 
+
 Route::resource('observations', 'ObservationController');
+Route::patch('observations/{id}/correctiveAction', 'ObservationController@correctiveAction')->name('observations.correctiveAction');
+
+
+
+Route::resource('permits', 'PermitController');

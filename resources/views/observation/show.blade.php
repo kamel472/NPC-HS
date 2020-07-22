@@ -15,9 +15,14 @@
                    
                    
                    <div class="form-style-5" style="text-align: right;" >
+                   @include('includes.send-correctiveAction') <br><br>
+                   @if(session('message'))
+                    <div class="alert alert-success" style="text-align:right">
+                    <p>{{ session('message') }} -</p>
+                    </div>
+                  @endif
+
                     
-                    
-                    @include('includes.edit-observation')
                     <h1 class="page-head-line">تفاصيل ملاحظة السلامة  </h1>
                         <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
   
@@ -84,7 +89,7 @@
                                 @endif
                             </div>
 
-                            @include('includes.edit-observation')
+                            @include('includes.send-correctiveAction')
                 </div>
                 
                               

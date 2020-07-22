@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Observation;
+use App\Http\Requests\ObservationStoreRequest;
+use App\Http\Requests\ObservationUpdateRequest;
 
 class ObservationController extends Controller
 {
@@ -36,14 +38,14 @@ class ObservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ObservationStoreRequest $request)
     {
         
         $observation = new Observation;
        
         $observation->desc = $request->desc;
         $observation->category = $request->category;
-        $observation->source = $request->source;
+        $observation->source = 'ملاحظة';
         $observation->observer = $request->observer;
         $observation->corrective_action_taken = $request->CAtaken;
         $observation->corrective_action_date = $request->date;
@@ -67,7 +69,7 @@ class ObservationController extends Controller
  
        $observation->save();
 
-        return redirect('observations/')->with('message' , 'observation posted');
+        return redirect()->back()->with('message' , ' تم ارسال الملاحظة .. شكرا');
     }
 
     /**
@@ -99,13 +101,39 @@ class ObservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Observation $observation)
+    public function update (Request $request, Observation $observation)
+    {
+
+        $request->validate([
+            
+            'desc' => ['required'],
+        ]);
+
+        $desc = $request->desc;
+        $category = $request->category;
+        $source = $request->source;;
+        $status = $request->status;
+       $CAtaken = $request->CAtaken;
+       $date = $request->date;
+        $responsible_party = $request->resposible;
+        $priority = $request->priority;
+
+
+       
+       $observation->update(['desc'=> $desc,'category'=>$category ,'source'=>$source , 
+       'responsible_party'=>$responsible_party,'priority'=>$priority,
+       'status'=>$status , 'corrective_action_taken'=>$CAtaken , 'corrective_action_date'=>$date ]);
+       
+       return redirect()->back()->with('message' , 'تم التعديل');
+    }
+    
+     public function correctiveAction (Request $request,  $id)
     {
        $status = $request->status;
        $CAtaken = $request->CAtaken;
        $date = $request->date;
-       $observation->update(['status'=>$status , 'corrective_action_taken'=>$CAtaken , 'corrective_action_date'=>$date ]);
-       return view ('observation.show' , compact('observation'));
+       Observation::where('id' , $id)->update(['status'=>$status , 'corrective_action_taken'=>$CAtaken , 'corrective_action_date'=>$date ]);
+       return redirect()->back()->with('message' , ' تم ارسال الاجراء التصحيحي .. شكرا');
     }
 
     /**

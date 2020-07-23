@@ -3,38 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Permit;
-use App\Http\Requests\PermitRequest;
+use App\Course;
 
-class PermitController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Request $request)
+    public function index()
     {
-        if($request->query('date') == date('Y-m-d')){
+        $courses = Course::all();
 
-            $now= date('Y-m-d') ;
-            $permits = Permit::where('date' , $now)->get();
-            if($permits){
-
-                return view ('permit.index' , compact('permits'));
-            }
-            else
-            {
-                return view ('permit.index'); 
-            }
-        }
-        elseif($request->query('show') == 'all')
-        {
-
-            $permits=Permit::all();
-            return view ('permit.index' , compact('permits'));
-
-        }
+        return view ('course.index' , compact('courses'));
     }
 
     /**
@@ -44,7 +26,7 @@ class PermitController extends Controller
      */
     public function create()
     {
-        return view ('permit.create' );
+        return view ('course.create' );
     }
 
     /**
@@ -53,18 +35,31 @@ class PermitController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PermitRequest $request)
+    public function store(Request $request)
     {
-        $permit = new Permit;
+        $course = new Course;
        
-        $permit->location = $request->location;
-        $permit->desc = $request->desc;
-        $permit->type = $request->type;
-        $permit->fire_fighting = $request->fire_fighting;
-        $permit->date = date('Y-m-d');
-        $permit->save();
+        
+        $course->title = $request->title;
+        $course->desc = $request->desc;
 
-        return redirect('permits/')->with('message' , 'observation posted');
+        if($request->hasFile('video')){
+        $video = $request->video;
+        
+            $fileName= $video->getClientOriginalName();
+            $explode= explode(".",$fileName );
+            $fileActualExt = strtolower(end($explode));
+            $fileActualName= $explode[0];
+            $fileUniqueName = $fileActualName.$course->id.'.'.$fileActualExt;
+    
+            $video->storeAs('videos', $fileUniqueName , 'public');
+
+            $course->video = $fileUniqueName;
+        }
+ 
+       $course->save();
+
+        return redirect()->back()->with('message' , ' تم رفع الفيديو ');
     }
 
     /**
@@ -73,9 +68,9 @@ class PermitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Course $course)
     {
-        //
+        return view ('course.show' , compact('course'));
     }
 
     /**
@@ -107,10 +102,8 @@ class PermitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permit $permit)
+    public function destroy($id)
     {
-        $permit->delete();
-        return redirect('permits/');
-
+        //
     }
 }

@@ -25,3 +25,5 @@ Route::patch('observations/{id}/correctiveAction', 'ObservationController@correc
 
 
 Route::resource('permits', 'PermitController');
+
+Route::resource('courses', 'CourseController');

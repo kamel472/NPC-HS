@@ -15,24 +15,26 @@ class PermitController extends Controller
      */
     public function index( Request $request)
     {
-        if($request->query('date') == date('Y-m-d')){
+        $date = $request->date;
 
-            $now= date('Y-m-d') ;
-            $permits = Permit::where('date' , $now)->get();
+        if($date){
+
+            $permits = Permit::where('date' , $date)->get();
             if($permits){
 
-                return view ('permit.index' , compact('permits'));
+                return view ('permit.index' , compact('permits' , 'date'));
             }
             else
             {
-                return view ('permit.index'); 
+                return view ('permit.index' , compact('date')); 
             }
         }
-        elseif($request->query('show') == 'all')
+        else
         {
 
-            $permits=Permit::all();
-            return view ('permit.index' , compact('permits'));
+            $date = date('Y-m-d');
+            $permits=Permit::where('date' , $date)->get();
+            return view ('permit.index' , compact('permits' , 'date'));
 
         }
     }
@@ -96,9 +98,20 @@ class PermitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PermitRequest $request, Permit $permit)
     {
-        //
+
+        $location = $request->location;
+        $desc = $request->desc;
+        $type = $request->type;
+        $fire_fighting = $request->fire_fighting;
+        $permit->date = date('Y-m-d');
+
+   
+       $permit->update(['desc'=> $desc,'location'=>$location ,'type'=>$type , 
+       'fire_fighting'=>$fire_fighting]);
+       
+       return redirect()->back()->with('message' , 'تم التعديل');
     }
 
     /**

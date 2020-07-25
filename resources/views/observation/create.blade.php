@@ -3,7 +3,7 @@
 @section('body')
 
       <div >
-          <div id="page-inner" style="background-image: url('{{asset('storage/images/hse.jpg')}}');">
+          <div id="page-inner" style="background-image: url('{{asset('storage/images/nice.jpg')}}');">
               <div class="form-style-5">
                   @if ($errors->any())
                     <div class="alert alert-danger" style="text-align:right">
@@ -29,13 +29,15 @@
                       <div class="form-group">
                           <label for="exampleFormControlSelect1">التصنيف </label>
                           <select class="form-control" name="category" id="exampleFormControlSelect1" >
-                              <option >عمل علي ارتفاعات </option>
+                              <option>عمل علي ارتفاعات</option>
                               <option>الرفع والتصبين</option>
-                              <option> النظافة والترتيب</option>
-                              <option> مخاطر الكهرباء </option>
-                              <option>  مخاطر الحريق</option>
-                              <option> مخاطر ميكانيكية</option>
-                              <option> اخري</option>
+                              <option>النظافة والترتيب</option>
+                              <option>مخاطر الكهرباء</option>
+                              <option>مخاطر الحريق</option>
+                              <option>مخاطر ميكانيكية</option>
+                              <option>مخاطر كيميائية</option>
+                              <option>مخاطر بيولوجية</option>
+                              <option>اخري</option>
 
                           </select>
                       </div>
@@ -48,9 +50,9 @@
                       <div class="form-group">
                           <label for="exampleFormControlSelect1"> الجهة المسئولة</label>
                           <select class="form-control" name="resposible" id="exampleFormControlSelect1">
-                              <option> ادارة السلامة   </option>
-                              <option> ادارة الكهرباء  </option>
-                              <option> ادارة الورش  </option>
+                              <option>ادارة السلامة</option>
+                              <option>ادارة الكهرباء</option>
+                              <option>ادارة الورش</option>
                           </select>
                       </div>
                       <div class="form-group" >

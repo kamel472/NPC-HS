@@ -7,10 +7,19 @@
         <!-- /. NAV SIDE  -->
         <div>
             <div id="page-inner">
-            
+
+            @include('includes.create-permit')
+            <br><br>
+
                 <div class="row">
                     <div class="col-md-12">
+                    
+                    <form action="{{route('permits.index')}}" method="get" class="form-inline">
 
+                    <input type="date"class="form-control" name="date">&nbsp;
+                    <input type="submit" class="btn btn-primary">
+                    </form>
+                    
                         @if ($errors->any())
                             <div class="alert alert-danger" >
                                 <ul>
@@ -23,9 +32,7 @@
 
                         <h1 class="page-head-line">سجل تصاريح العمل</h1>
                         <h1 class="page-subhead-line" style="text-align:right;">التاريخ: 
-                        <?php
-                        echo (date('Y-m-d'));
-                        ?> 
+                        {{$date}}
                     </div>
                 </div>
                 
@@ -39,6 +46,7 @@
                               <table class="table">
                                 <thead>
                                     <tr >
+                                    <td>تعديل</td>
                                       <td>حذف</td>
                                       <td>التأمين</td>
                                       <td >نوع التصريح</td>
@@ -50,11 +58,14 @@
                                     @foreach($permits as $permit)
                                     <tr class="list-group-item-secondary">
                                     <td>
+                                    @include('includes.edit-permit')
+                                    </td>
+                                    <td>
                                     <form method="post" action="{{route('permits.destroy' , $permit->id)}}"
                                     id="permit-destroy{{$permit->id}}">
                                     @csrf
                                     @method('delete')
-                                    <input type="submit" class="btn btn-danger" value="حذف"  onclick="observationDelete(this)">
+                                    <input type="submit" class="btn btn-danger" value="حذف">
                                     </form>
                                     <td>{{$permit->fire_fighting}}</td>
                                     <td>
@@ -73,7 +84,7 @@
                                 </tbody>
 
                               </table>
-                              @include('includes.create-permit')
+                              
                               <br><br>
                     </div>
                   </div>

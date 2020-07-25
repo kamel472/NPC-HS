@@ -18,7 +18,7 @@
                     <p>{{ session('message') }} -</p>
                     </div>
                   @endif
-                  <h1 class="page-head-line">رفع  فيديو</h1>
+                  <h1 class="page-head-line"> اضافة كورس</h1>
                   <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
                   <form method="POST" action="{{route('courses.store')}}"  enctype="multipart/form-data">
                       @csrf

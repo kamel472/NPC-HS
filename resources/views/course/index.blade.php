@@ -6,7 +6,7 @@
         
         <!-- /. NAV SIDE  -->
             <div>
-                <div id="page-inner">
+                <div id="page-inner" style="background-image: url('{{asset('storage/images/nice.jpg')}}');">
                     <div class="row">
                         <div class="col-md-12">
 
@@ -24,7 +24,7 @@
                     </div>
                   @endif
                   
-                            <a  href="{{route('observations.create')}}" class="btn btn-primary btn-lg"  role="button">ارسال ملاحظة</a>
+                            <a  href="{{route('courses.create')}}" class="btn btn-primary btn-lg"  role="button"> اضافة كورس</a>
                             <h1 class="page-head-line"> دورات توعية</h1>
                             <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
                         </div>

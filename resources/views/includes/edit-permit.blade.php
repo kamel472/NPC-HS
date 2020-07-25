@@ -1,32 +1,33 @@
  <!--Edit Comment Button-->
  <div  >
                         
-                        <a  href="" class="btn btn-primary btn-lg" data-target="#modalCreatePermit" data-toggle="modal" role="button">  تسجيل تصريح عمل</a>
+                        <a  href="" class="btn btn-primary " data-target="#modalEditPermit" data-toggle="modal" role="button">  تعديل </a>
                         &nbsp;&nbsp;
 
                         <!--Edit Comment Modal-->
 
-                        <div class="modal " id="modalCreatePermit" tabindex="-1" role="dialog"
-                            aria-labelledby="myModalLabel" aria-hidden="true" style="text-align:right;">
+                        <div class="modal " id="modalEditPermit" tabindex="-1" role="dialog"
+                            aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content"  >
+                                <div class="modal-content">
                                     <div class="modal-header text-center">
-                                        <h4 class="modal-title w-100 font-weight-bold"> تسجيل تصريح عمل</h4>
-                                        <form method="POST" action="{{route('permits.store')}}" >
+                                        <h4 class="modal-title w-100 font-weight-bold"> تعديل تصريح عمل</h4>
+                                        <form method="POST" action="{{route('permits.update' , $permit->id)}}" >
                                         @csrf
+                                        @method('patch')
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body mx-3" >
+                                    <div class="modal-body mx-3">
                                         
                                     
                               <label for="exampleFormControlTextarea1">مكان العمل </label>
-                              <textarea class="form-control" name="location" id="exampleFormControlTextarea1" rows="3"></textarea>
+                              <textarea class="form-control" name="location" id="exampleFormControlTextarea1" rows="3">{{$permit->location}}</textarea>
                            
 
                               <label for="exampleFormControlTextarea1">وصف العمل</label>
-                              <textarea class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3"></textarea>
+                              <textarea class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3">{{$permit->desc}}</textarea>
 
                               <label>نوع التصريح </label>
                               <br>
@@ -53,7 +54,7 @@
 
                                     </div>
                                     <div class="modal-footer d-flex justify-content-center">
-                                    <input type="submit" class="btn btn-primary btn-lg" value="تسجيل">
+                                    <input type="submit" class="btn btn-primary btn-lg" value="تعديل">
                                         </form>
                                     </div>
                                 </div>

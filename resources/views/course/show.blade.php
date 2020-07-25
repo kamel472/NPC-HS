@@ -24,20 +24,22 @@
                         <h1 class="page-head-line">  {{$course->title}}</h1>
                         <h1 class="page-subhead-line">{{$course->desc}} </h1>
 
+                        <video  width="350" height="300" controls>
+                            <source src="{{ asset('storage/videos/'.$course->video) }}" type="video/mp4">
+                        </video>
+
                     </div>
                 </div>
                 
                 <!-- /. ROW  -->
-                 <div class="row">
-                    <div class="col-md-12">
+                 
+                    <div>
                         
 
-                            <video  width="400" height="300" controls>
-                                <source src="{{ asset('storage/videos/'.$course->video) }}" type="video/mp4">
-                            </video>
+                            
                   
                 </div>
-              </div>
+              
             </div>
             <!-- /. PAGE INNER  -->
         </div>

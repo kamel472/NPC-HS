@@ -18,10 +18,10 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                     </div>
-                                    <div class="modal-body mx-3">
+                                    <div class="modal-body mx-3" >
 
                         <label for="exampleFormControlTextarea1">وصف تفصيلي</label>
-                        <textarea class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3">{{$observation->desc}}</textarea>
+                        <textarea   class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3">{{$observation->desc}}</textarea>
                       
                       
                           <label for="exampleFormControlSelect1">التصنيف </label>
@@ -67,10 +67,11 @@
                               </select>
 
                               <label for="exampleFormControlTextarea1"> الاجراء التصحيحي المتخذ</label>
-                              <textarea class="md-textarea form-control" class="md-textarea form-control" name="CAtaken" id="exampleFormControlTextarea1" rows="3"></textarea>
+                              <textarea class="md-textarea form-control" class="md-textarea form-control" name="CAtaken" 
+                              id="exampleFormControlTextarea1" rows="3">{{$observation->corrective_action_taken}}</textarea>
 
                               <label for="exampleFormControlTextarea1"> تاريخ الاجراء التصحيحي</label>
-                              <input class="form-control" name="date" type="date" ></input>
+                              <input class="form-control" name="date" type="date" value="{{$observation->corrective_action_date}}" ></input>
 
                                     </div>
                                     <div class="modal-footer d-flex justify-content-center">

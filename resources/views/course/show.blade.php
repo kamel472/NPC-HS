@@ -22,11 +22,24 @@
                         @endif
 
                         <h1 class="page-head-line">  {{$course->title}}</h1>
-                        <h1 class="page-subhead-line">{{$course->desc}} </h1>
+                        
 
-                        <video  width="350" height="300" controls>
+                       
+  
+  <div class="row">
+    <div class="col-sm">
+        
+    <video   controls>
                             <source src="{{ asset('storage/videos/'.$course->video) }}" type="video/mp4">
                         </video>
+    </div>
+    <div class="col-sm">
+    <h3 style="text-align:right;">{{$course->desc}} </h3>
+    </div>
+  </div>
+
+
+                        
 
                     </div>
                 </div>

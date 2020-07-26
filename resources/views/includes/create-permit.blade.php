@@ -22,11 +22,11 @@
                                         
                                     
                               <label for="exampleFormControlTextarea1">مكان العمل </label>
-                              <textarea class="form-control" name="location" id="exampleFormControlTextarea1" rows="3"></textarea>
+                              <input class="form-control" name="location" id="exampleFormControlTextarea1" rows="3"></input>
                            
 
                               <label for="exampleFormControlTextarea1">وصف العمل</label>
-                              <textarea class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3"></textarea>
+                              <input class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3"></input>
 
                               <label>نوع التصريح </label>
                               <br>

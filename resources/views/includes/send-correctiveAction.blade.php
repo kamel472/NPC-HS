@@ -1,7 +1,7 @@
  <!--Edit Comment Button-->
  <div  >
                         
-                        <a  href="" class="btn btn-primary btn-lg" data-target="#modalEditComment{{$observation->id}}" data-toggle="modal" role="button">ارسال الاجراء التصحيحي</a>
+                        <a  style="float: left;" href="" class="btn btn-primary btn-lg" data-target="#modalEditComment{{$observation->id}}" data-toggle="modal" role="button">ارسال الاجراء التصحيحي</a>
                         &nbsp;&nbsp;
 
                         <!--Edit Comment Modal-->

@@ -38,33 +38,23 @@
             <div class= "observation">
               <table class="table">
                 <thead>
-                  <tr>
-                  <td>تعديل</td>
+                  <tr style="background-color:rgb(89, 216, 233);">
                   <td>حذف</td>
                   <td>وصف</td>
                   <td>وصف مختصر</td>
-
                   </tr>
                 </thead>
-                <tbody>
-                   
+                <tbody> 
+                  
+                  @foreach ($courses as $course)
                   <tr class="list-group-item-success">
-@foreach ($courses as $course)
-                  <td>
-                      <form method="post" action="" id="observation-destroy">
+                    <td>
+                      <form method="post" action="{{route('courses.destroy' , $course->id)}}" id="course-destroy">
                         @csrf
                         @method('delete')
                         <input type="submit" class="btn btn-danger" value="حذف" onclick="observationDelete(this)"> 
                       </form>
                     </td>
-                  <td>
-                      <form method="post" action="" id="observation-destroy">
-                        @csrf
-                        @method('delete')
-                        <input type="submit" class="btn btn-danger" value="حذف" onclick="observationDelete(this)"> 
-                      </form>
-                    </td>
-
                     <td>{{$course->desc}}</td> 
                     <td><a href="{{route('courses.show' , $course->id)}}">{{$course->title}}</a></td> 
                   </tr>

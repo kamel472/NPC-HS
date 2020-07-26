@@ -28,3 +28,4 @@ Route::get('observation/stats', 'ObservationController@stats')->name('observatio
 Route::resource('permits', 'PermitController');
 
 Route::resource('courses', 'CourseController');
+Route::resource('stats', 'StatsController');

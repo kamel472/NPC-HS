@@ -23,18 +23,34 @@
                           </div>
                         </div>
 
+                        @can('viewAny', App\Observation::class)
                         <div>
                           <div class="btn-group">
                             <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              الادارة
+                              في نطاق
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" href="observations?dep=HSE">ادارة السلامة</a>
-                              <a class="dropdown-item" href="observations?dep=elect">ادارة الكهرباء</a>
-                              <a class="dropdown-item" href="observations?dep=workshop">ادارة الورش</a>
+                              <a class="dropdown-item" href="observations?area=HSE">ادارة السلامة</a>
+                              <a class="dropdown-item" href="observations?area=elect">ادارة الكهرباء</a>
+                              <a class="dropdown-item" href="observations?area=workshop">ادارة الورش</a>
                             </div>
                           </div>
                         </div>
+
+                        <div>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              مسئول التنفيذ
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="observations?correction=HSE">ادارة السلامة</a>
+                              <a class="dropdown-item" href="observations?correction=elect">ادارة الكهرباء</a>
+                              <a class="dropdown-item" href="observations?correction=workshop">ادارة الورش</a>
+                            </div>
+                          </div>
+                        </div>
+                       
+                        @endcan
 
                         <div>
                           <div class="btn-group" >
@@ -81,18 +97,7 @@
                             </div>
                           </div>
 
-                          <div >
-                            <div class="btn-group">
-                              <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                الاولوية
-                              </button>
-                              <div class="dropdown-menu">
-                                <a class="dropdown-item" href="observations?priority=high">عالية</a>
-                                <a class="dropdown-item" href="observations?priority=medium">متوسطة</a>
-                                <a class="dropdown-item" href="observations?priority=low">منخفضة</a>
-                              </div>
-                            </div>
-                          </div>
+                          
                         </div>
                       </div>
                     </div>
@@ -125,11 +130,13 @@
                               <table class="table">
                                 <thead>
                                   <tr>
+                                    @if (auth()->user()->name == 'safety_admin')
                                     <td>تعديل</td>
                                     <td>حذف</td>
+                                    @endif
                                     <td>الحالة</td>
-                                    <td>الاولوية</td>
-                                    <td >الادارة المسئولة</td> 
+                                    <td > الادارة المسئولة عن التنفيذ </td>
+                                    <td >في نطاق </td> 
                                     <td>التصنيف</td>
                                     <td >المصدر</td>
                                     <td >التاريخ</td>
@@ -137,7 +144,9 @@
                                   </tr>
                                 </thead>
                                 <tbody>
+                                
                                     @foreach($observations as $observation)
+                                   
                                         @if ($observation->status ==  'لم يتم الحل')
                                             <tr class="list-group-item-danger">
                                         @elseif ($observation->status ==  'جاري الحل')
@@ -146,6 +155,7 @@
                                             <tr class="list-group-item-success">
                                         @endif
 
+                                        @if (auth()->user()->name == 'safety_admin')   
                                     <td>
                                       @include('includes.edit-observation')
                                     </td>
@@ -157,16 +167,21 @@
                                         <input type="submit" class="btn btn-danger" value="حذف" onclick="observationDelete(this)"> 
                                       </form>
                                     </td>
+                                    @endif
+                                    
 
                                     <td>{{$observation->status}}</td>
-                                    <td>{{$observation->priority}} </td>
-                                    <td>{{$observation->responsible_party}} </td>
+                                    <td>{{$observation->responsible_correction}} </td>
+                                    <td>{{$observation->responsible_area}} </td>
                                     <td>{{$observation->category}} </td>
                                     <td>{{$observation->source}} </td>
                                     <td>{{$observation->created_at}} </td>
                                     
-                                    <td><a href="{{route('observations.show' , $observation->id)}}">{{$observation->desc}}</a></td>
+                                    <td> <a href="{{route('observations.show' , $observation->id)}}">{{$observation->desc}}</a></td>
+
+                                    
                                   </tr> 
+                                  
                                   @endforeach
                                 </tbody>
                               </table>

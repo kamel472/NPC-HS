@@ -27,7 +27,8 @@ class ObservationStoreRequest extends FormRequest
             
             'desc' => 'required|max:255',
             'category' => 'required',
-            'resposible' => 'required'
+            'responsible_area' => 'required',
+            'responsible_correction' => 'required'
                
         ];
     }
@@ -37,7 +38,8 @@ class ObservationStoreRequest extends FormRequest
         return [
             'category.required' => 'رجاء ادخال التصنيف',
             'desc.required' => 'رجاء ادخال الوصف',
-            'resposible.required' => 'رجاء ادخال الادارة المسئولة',
+            'responsible_area.required' => 'رجاء ادخال الادارة التي في نطاقها الملاحظة',
+            'responsible_correction.required' => ' رجاء ادخال الادارة المسئولة عن التنفيذ',
         ];
     }
 }

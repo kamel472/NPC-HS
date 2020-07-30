@@ -44,15 +44,15 @@
                               <option>  جولة الادارة العليا </option>
                           </select>
 
-                          <label for="exampleFormControlSelect1"> الاولوية </label>
-                          <select class="form-control" name="priority" id="exampleFormControlSelect1" >
-                              <option >  عالية </option>
-                              <option> متوسطة</option>
-                              <option>  منخفضة</option>
+                          <label for="exampleFormControlSelect1">  في نطاق</label>
+                          <select class="form-control" name="responsible_area" id="exampleFormControlSelect1">
+                              <option> ادارة السلامة   </option>
+                              <option> ادارة الكهرباء  </option>
+                              <option> ادارة الورش  </option>
                           </select>
 
-                          <label for="exampleFormControlSelect1"> الجهة المسئولة</label>
-                          <select class="form-control" name="resposible" id="exampleFormControlSelect1">
+                          <label for="exampleFormControlSelect1"> الادارة المسئولة عن التنفيذ</label>
+                          <select class="form-control" name="responsible_correction" id="exampleFormControlSelect1">
                               <option> ادارة السلامة   </option>
                               <option> ادارة الكهرباء  </option>
                               <option> ادارة الورش  </option>

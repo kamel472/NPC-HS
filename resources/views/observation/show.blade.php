@@ -8,7 +8,12 @@
           <div id="page-inner" style="text-align: right;">
             
             <div class="form-style-5"  >
-              @include('includes.send-correctiveAction') <br><br>
+            
+
+            @include('includes.send-correctiveAction')
+            
+            
+            <br><br>
               @if(session('message'))
                 <div class="alert alert-success" style="text-align:right">
                   <p>{{ session('message') }} -</p>
@@ -45,48 +50,42 @@
                   </div>
                 </div>
               </div>
+             
+
 
               <div class="container">
                 <div class="row">
                   <div class="col-sm">
                     <div class="form-group">
-                      <label for="exampleFormControlSelect1"> الاولوية </label>
-                      <input style="pointer-events: none;" type="text" class="form-control"  id="exampleFormControlSelect1" value="{{$observation->priority}}" ></input>
+                      <label for="exampleFormControlSelect1">  في نطاق</label>
+                      <input  style="pointer-events: none;" type="text" class="form-control"  id="exampleFormControlSelect1" value="{{$observation->responsible_area}}"></input>
                     </div>
-                    
                   </div>
                   <div class="col-sm">
                     <div class="form-group">
-                      <label for="exampleFormControlSelect1"> حالة الملاحظة</label>
-      
+                      <label for="exampleFormControlSelect1">  الادارة المسئولة عن التنفيذ</label>
+                      <input  style="pointer-events: none;" type="text" class="form-control"  id="exampleFormControlSelect1" value="{{$observation->responsible_correction}}"></input>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                     
+                  
+              <div class="col-sm">
+              <div class="form-group">
+                      <label for="exampleFormControlSelect1"> الحالة </label>
                       @if ($observation->status ==  'لم يتم الحل')
-                        <input style="pointer-events: none;background-color: rgb(226, 124, 106);" type="text" class="form-control"  
-                        id="exampleFormControlSelect1" value="{{$observation->status}}"></input>
-                      @elseif ($observation->status ==  'جاري الحل')
-                        <input style="pointer-events: none;background-color: rgb(233, 230, 68);" type="text" class="form-control"  
-                        id="exampleFormControlSelect1" value="{{$observation->status}}"></input>
-                      @elseif ($observation->status ==  'تم الحل')
-                        <input style="pointer-events: none;background-color: rgb(75, 223, 119);" type="text" class="form-control"  
-                        id="exampleFormControlSelect1" value="{{$observation->status}}"></input>
-                      @endif
-      
+                      <input  style="pointer-events: none;background-color: red;"
+                                        @elseif ($observation->status ==  'جاري الحل')
+                                        <input  style="pointer-events: none;background-color: yellow;"
+                                        @elseif ($observation->status ==  'تم الحل')
+                                        <input  style="pointer-events: none;background-color: green;"
+                                        @endif
+                       type="text" class="form-control"  id="exampleFormControlSelect1" value="{{$observation->status}}"></input>
                     </div>
                   </div>
-
-                </div>
-              </div>
-
-              <div class="container">
-                <div class="row">
-                  <div class="col-sm">
-                    <div class="form-group">
-                      <label for="exampleFormControlSelect1"> الجهة المسئولة</label>
-                      <input  style="pointer-events: none;" type="text" class="form-control"  id="exampleFormControlSelect1" value="{{$observation->responsible_party}}"></input>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+              
               <div class="container">
                 <div class="row">
                   <div class="col-sm">
@@ -109,16 +108,28 @@
                 </div>
               </div>
               
+              
               <div class="container">
               <div class="form-group" >
                 @if ($observation->photo)
                   <label for="exampleFormControlTextarea1">   الصورة المرفقة </label>
-                  <img src="{{ asset('storage/images/'.$observation->photo) }}" alt="image" style='max-width: 100%;'>
+                  <img src="{{ asset('storage/images/'.$observation->photo) }}" alt="image" style='max-width: 75%;'>
                 @endif
+
               </div>
+              
+
+              
+              
             </div>
 
-              @include('includes.send-correctiveAction')
+            @include('includes.send-correctiveAction')
+            
+          </div>
+            </div>
+          </div>
+
+              
 
             </div>
 

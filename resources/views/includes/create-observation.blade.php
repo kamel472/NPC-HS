@@ -44,8 +44,15 @@
                      
 
                       
-                          <label for="exampleFormControlSelect1"> الجهة المسئولة</label>
-                          <select class="form-control" name="resposible" id="exampleFormControlSelect1">
+                          <label for="exampleFormControlSelect1">  في نطاق </label>
+                          <select class="form-control" name="responsible_area" id="exampleFormControlSelect1">
+                              <option>ادارة السلامة</option>
+                              <option>ادارة الكهرباء</option>
+                              <option>ادارة الورش</option>
+                          </select>
+
+                          <label for="exampleFormControlSelect1">   الادارة المسئولة عن التنفيذ </label>
+                          <select class="form-control" name="responsible_correction" id="exampleFormControlSelect1">
                               <option>ادارة السلامة</option>
                               <option>ادارة الكهرباء</option>
                               <option>ادارة الورش</option>

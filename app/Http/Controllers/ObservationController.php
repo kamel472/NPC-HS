@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Observation;
 use App\Http\Requests\ObservationStoreRequest;
 use App\Http\Requests\ObservationUpdateRequest;
+use Illuminate\Support\Facades\Gate;
 
 class ObservationController extends Controller
 {
@@ -14,139 +15,151 @@ class ObservationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Observation $observation)
     
     {
 
-        switch ($request->query('dep')) {
-            case 'HSE':
-                $observations = Observation::where('responsible_party' , 'ادارة السلامة')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
+        $response = Gate::inspect('viewAny', $observation);
 
-            case 'elect':
-                $observations = Observation::where('responsible_party' , 'ادارة الكهرباء')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
+        if ($response->allowed()) {
+            switch ($request->query('correction')) {
+                case 'HSE':
+                    $observations = Observation::where('responsible_correction' , 'ادارة السلامة')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'elect':
+                    $observations = Observation::where('responsible_correction' , 'ادارة الكهرباء')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'workshop':
+                    $observations = Observation::where('responsible_correction' , 'ادارة الورش')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+            }
+    
+            switch ($request->query('area')) {
+                case 'HSE':
+                    $observations = Observation::where('responsible_area' , 'ادارة السلامة')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'elect':
+                    $observations = Observation::where('responsible_area' , 'ادارة الكهرباء')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'workshop':
+                    $observations = Observation::where('responsible_area' , 'ادارة الورش')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+            }
+    
+            switch ($request->query('category')) {
+    
+                case 'workingAthieght':
+                    $observations = Observation::where('category' , 'عمل علي ارتفاعات')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'housekeeping':
+                    $observations = Observation::where('category' , 'النظافة والترتيب')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'elec':
+                    $observations = Observation::where('category' , 'مخاطر الكهرباء')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'lifting':
+                    $observations = Observation::where('category' , 'الرفع والتصبين')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'fire':
+    
+                    $observations = Observation::where('category' , 'مخاطر الحريق')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'mech':
+                    $observations = Observation::where('category' , 'مخاطر ميكانيكية')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break; 
+    
+                case 'chem':
+                    $observations = Observation::where('category' , 'مخاطر كيميائية')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+                                
+                case 'bio':
+                    $observations = Observation::where('category' , 'مخاطر بيولوجية')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'other':
+                    $observations = Observation::where('category' , 'اخري')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+            }
+    
+            switch ($request->query('status')) {
+                case 'pending':
+                    $observations = Observation::where('status' , 'لم يتم الحل')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'ongoing':
+                    $observations = Observation::where('status' , 'جاري الحل')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'done':
+                    $observations = Observation::where('status' , 'تم الحل')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+            }
+    
+            switch ($request->query('source')) {
+                case 'observation':
+                    $observations = Observation::where('source' , 'ملاحظة')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'inspection':
+                    $observations = Observation::where('source' , 'تفتيش')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'audit':
+                    $observations = Observation::where('source' , 'تدقيق')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+    
+                case 'management':
+                    $observations = Observation::where('source' , 'جولة الادارة العليا')->get();
+                    return view ('observation.index' , compact('observations'));
+                    break;
+            }
+    
+           
+           
+                
+            $observations = Observation::all();
+    
+            return view ('observation.index' , compact('observations'));
 
-            case 'workshop':
-                $observations = Observation::where('responsible_party' , 'ادارة الورش')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
         }
 
-        switch ($request->query('category')) {
+        else {
 
-            case 'workingAthieght':
-                $observations = Observation::where('category' , 'عمل علي ارتفاعات')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'housekeeping':
-                $observations = Observation::where('category' , 'النظافة والترتيب')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'elec':
-                $observations = Observation::where('category' , 'مخاطر الكهرباء')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'lifting':
-                $observations = Observation::where('category' , 'الرفع والتصبين')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'fire':
-
-                $observations = Observation::where('category' , 'مخاطر الحريق')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'mech':
-                $observations = Observation::where('category' , 'مخاطر ميكانيكية')->get();
-                return view ('observation.index' , compact('observations'));
-                break; 
-
-            case 'chem':
-                $observations = Observation::where('category' , 'مخاطر كيميائية')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-                            
-            case 'bio':
-                $observations = Observation::where('category' , 'مخاطر بيولوجية')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'other':
-                $observations = Observation::where('category' , 'اخري')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
+            $dep = auth()->user()->dep;
+            $observations = Observation::where('responsible_area' , $dep)->
+            orwhere('responsible_correction' , $dep) ->get();
+            return view ('observation.index' , compact('observations'));
         }
-
-        switch ($request->query('status')) {
-            case 'pending':
-                $observations = Observation::where('status' , 'لم يتم الحل')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'ongoing':
-                $observations = Observation::where('status' , 'جاري الحل')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'done':
-                $observations = Observation::where('status' , 'تم الحل')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-        }
-
-        switch ($request->query('source')) {
-            case 'observation':
-                $observations = Observation::where('source' , 'ملاحظة')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'inspection':
-                $observations = Observation::where('source' , 'تفتيش')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'audit':
-                $observations = Observation::where('source' , 'تدقيق')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'management':
-                $observations = Observation::where('source' , 'جولة الادارة العليا')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-        }
-
-        switch ($request->query('priority')) {
-            case 'high':
-                $observations = Observation::where('priority' , 'عالية')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'medium':
-                $observations = Observation::where('priority' , 'متوسطة')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-
-            case 'low':
-                $observations = Observation::where('priority' , 'منخفضة')->get();
-                return view ('observation.index' , compact('observations'));
-                break;
-        }
-
-            
-        $observations = Observation::all();
-
-        return view ('observation.index' , compact('observations'));
-
-            
-        
                 
     }
 
@@ -179,7 +192,7 @@ class ObservationController extends Controller
      */
     public function store(ObservationStoreRequest $request)
     {
-        
+
         $observation = new Observation;
        
         $observation->desc = $request->desc;
@@ -189,8 +202,9 @@ class ObservationController extends Controller
         $observation->corrective_action_taken = $request->CAtaken;
         $observation->corrective_action_date = $request->date;
         $observation->status = "لم يتم الحل";
-        $observation->responsible_party = $request->resposible;
-        $observation->priority = $request->priority;
+        $observation->responsible_area = $request->responsible_area;
+        $observation->responsible_correction = $request->responsible_correction;
+        $observation->confirmed = 0 ; 
 
         if($request->hasFile('image')){
         $image = $request->image;
@@ -252,15 +266,15 @@ class ObservationController extends Controller
         $category = $request->category;
         $source = $request->source;;
         $status = $request->status;
-       $CAtaken = $request->CAtaken;
-       $date = $request->date;
-        $responsible_party = $request->resposible;
-        $priority = $request->priority;
+        $CAtaken = $request->CAtaken;
+        $date = $request->date;
+        $responsible_area = $request->responsible_area;
+        $responsible_correction = $request->responsible_correction;
 
 
        
        $observation->update(['desc'=> $desc,'category'=>$category ,'source'=>$source , 
-       'responsible_party'=>$responsible_party,'priority'=>$priority,
+       'responsible_area'=>$responsible_area, 'responsible_correction'=>$responsible_correction,
        'status'=>$status , 'corrective_action_taken'=>$CAtaken , 'corrective_action_date'=>$date ]);
        
        return redirect()->back()->with('message' , 'تم التعديل');

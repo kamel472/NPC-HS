@@ -20,12 +20,13 @@ class CreateObservationsTable extends Migration
             $table->string('category');
             $table->string('source');
             $table->string('observer')->nullable();
-            $table->string('priority')->nullable();
-            $table->string('responsible_party')->nullable();
+            $table->string('responsible_area');
+            $table->string('responsible_correction')->nullable();
             $table->text('corrective_action_taken')->nullable();
-            $table->text('corrective_action_date')->nullable();
+            $table->date('corrective_action_date')->nullable();
             $table->string('status');
             $table->string('photo')->nullable();
+            $table->boolean('confirmed');
             $table->timestamps();
         });
     }

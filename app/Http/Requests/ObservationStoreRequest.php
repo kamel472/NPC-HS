@@ -26,9 +26,8 @@ class ObservationStoreRequest extends FormRequest
         return [
             
             'desc' => 'required|max:255',
-            'category' => 'required',
-            'responsible_area' => 'required',
-            'responsible_correction' => 'required'
+            
+
                
         ];
     }
@@ -36,10 +35,10 @@ class ObservationStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'category.required' => 'رجاء ادخال التصنيف',
+            
             'desc.required' => 'رجاء ادخال الوصف',
-            'responsible_area.required' => 'رجاء ادخال الادارة التي في نطاقها الملاحظة',
-            'responsible_correction.required' => ' رجاء ادخال الادارة المسئولة عن التنفيذ',
+           
+           
         ];
     }
 }

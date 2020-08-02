@@ -29,9 +29,10 @@
   <div class="row">
     <div class="col-sm">
         
-    <video   controls>
-                            <source src="{{ asset('storage/videos/'.$course->video) }}" type="video/mp4">
-                        </video>
+    <video  width="300" height="300" controls>
+    <source src="{{ asset('storage/videos/'.$course->video) }}" type="video/mp4">
+    </video>
+    
     </div>
     <div class="col-sm">
     <h3 style="text-align:right;">{{$course->desc}} </h3>

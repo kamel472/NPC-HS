@@ -29,7 +29,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('department') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="department" required >
+                                <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="department"  >
 
                                 @error('department')
                                     <span class="invalid-feedback" role="alert">

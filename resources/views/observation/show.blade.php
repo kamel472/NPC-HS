@@ -8,10 +8,14 @@
           <div id="page-inner" style="text-align: right;">
             
             <div class="form-style-5"  >
-            
 
-            @include('includes.send-correctiveAction')
-            
+              @unless (auth()->user()->name == 'chairman' || $observation->status == 'تم الحل' || $observation->showSafety == 0)
+              
+
+              @include('includes.send-correctiveAction')
+  
+              @endunless
+              <a href="{{route('observations.index')}}"><h3>عودة</h3></a>
             
             <br><br>
               @if(session('message'))
@@ -36,12 +40,6 @@
 
               <div class="container">
                 <div class="row">
-                  <div class="col-sm">
-                    <div class="form-group">
-                      <label for="exampleFormControlSelect1">التصنيف </label>
-                      <input style="pointer-events: none;" type="text" class="form-control"  id="exampleFormControlSelect1" value="{{$observation->category}}" > </input>
-                    </div>
-                  </div>
                   <div class="col-sm">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">مصدر الملاحظة</label>
@@ -86,6 +84,7 @@
                     </div>
                   </div>
               
+                  
               <div class="container">
                 <div class="row">
                   <div class="col-sm">
@@ -122,14 +121,20 @@
               
               
             </div>
+            @unless (auth()->user()->name == 'chairman' || $observation->status == 'تم الحل' || $observation->showSafety == 0)
 
             @include('includes.send-correctiveAction')
+
+            @endunless
+            
+            <a href="{{route('observations.index')}}"><h3>عودة</h3></a>
+          </div>
+          
+            </div>
             
           </div>
-            </div>
-          </div>
 
-              
+          
 
             </div>
 

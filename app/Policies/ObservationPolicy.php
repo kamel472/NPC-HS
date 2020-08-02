@@ -18,7 +18,7 @@ class ObservationPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->name === 'safety_admin' ;
+        return $user->admin == 3 || $user->admin == 2 ;
     }
 
     /**

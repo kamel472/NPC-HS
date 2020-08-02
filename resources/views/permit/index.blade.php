@@ -39,21 +39,26 @@
                 <!-- /. ROW  -->
                  <div class="row">
                     <div class="col-md-12">
-                        <div class="panel panel-primary">
+                        <div >
 
                           <!-- Table -->
                           <div class= "observation">
-                              <table class="table">
-                                <thead>
-                                    <tr >
-                                    <td>تعديل</td>
-                                      <td>حذف</td>
-                                      <td>التأمين</td>
-                                      <td >نوع التصريح</td>
-                                      <td >وصف العمل</td>
-                                      <td>مكان العمل</td>
-                                    </tr>
+                              <table class="table table-striped">
+
+                              <thead>
+
+                                  <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col" >تعديل</th>
+                                    <th scope="col" >حذف</th>
+                                    <th scope="col" >التأمين</th>
+                                    <th scope="col" >نوع التصريح </th>
+                                    <th scope="col" >وصف العمل </th>
+                                    <th scope="col" >مكان العمل</th>
+                                    
+                                  </tr>
                                 </thead>
+
                                 <tbody>
                                     @foreach($permits as $permit)
                                     <tr class="list-group-item-secondary">

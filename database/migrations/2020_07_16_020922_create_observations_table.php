@@ -17,7 +17,6 @@ class CreateObservationsTable extends Migration
         
             $table->id();
             $table->text('desc');
-            $table->string('category');
             $table->string('source');
             $table->string('observer')->nullable();
             $table->string('responsible_area');
@@ -26,7 +25,8 @@ class CreateObservationsTable extends Migration
             $table->date('corrective_action_date')->nullable();
             $table->string('status');
             $table->string('photo')->nullable();
-            $table->boolean('confirmed');
+            $table->boolean('showSafety');
+            $table->boolean('showChairman');
             $table->timestamps();
         });
     }

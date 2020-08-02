@@ -6,7 +6,7 @@
         
         <!-- /. NAV SIDE  -->
             <div>
-                <div id="page-inner" style="background-image: url('{{asset('storage/images/nice.jpg')}}');">
+                <div id="page-inner" >
                     <div class="row">
                         <div class="col-md-12">
 
@@ -36,12 +36,17 @@
           
           <!-- Table -->
             <div class= "observation">
-              <table class="table">
-                <thead>
-                  <tr style="background-color:rgb(89, 216, 233);">
-                  <td>حذف</td>
-                  <td>وصف</td>
-                  <td>وصف مختصر</td>
+
+            <table class="table table-striped">
+
+               <thead>
+
+                  <thead class="thead-dark">
+                  <tr>
+                    
+                    <th scope="col" >حذف</th>
+                    <th scope="col" >وصف</th>
+                    <th scope="col" >وصف مختصر </th>
                   </tr>
                 </thead>
                 <tbody> 

@@ -3,7 +3,7 @@
 @section('body')
 
       <div >
-          <div id="page-inner" style="background-image: url('{{asset('storage/images/nice.jpg')}}');">
+          <div id="page-inner">
               <div class="form-style-5">
                   @if ($errors->any())
                     <div class="alert alert-danger" style="text-align:right">
@@ -20,48 +20,78 @@
                   @endif
                   <h1 class="page-head-line">ارسال ملاحظة سلامة</h1>
                   <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
-                  <form method="POST" action="{{route('observations.store')}}"  enctype="multipart/form-data">
-                      @csrf
-                      <div class="form-group">
-                        <label for="exampleFormControlTextarea1">وصف تفصيلي</label>
+                  <form method="POST" action="{{route('observations.store')}}"  enctype="multipart/form-data" >
+                                        @csrf
+                                        
+                                    
+                                    <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">وصف تفصيلي</label>
                         <textarea class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3"></textarea>
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleFormControlSelect1">التصنيف </label>
-                          <select class="form-control" name="category" id="exampleFormControlSelect1" >
-                              <option>عمل علي ارتفاعات</option>
-                              <option>الرفع والتصبين</option>
-                              <option>النظافة والترتيب</option>
-                              <option>مخاطر الكهرباء</option>
-                              <option>مخاطر الحريق</option>
-                              <option>مخاطر ميكانيكية</option>
-                              <option>مخاطر كيميائية</option>
-                              <option>مخاطر بيولوجية</option>
-                              <option>اخري</option>
 
-                          </select>
-                      </div>
-
-                      <div class="form-group">
-                          <label for="exampleFormControlInput1">الاسم</label>
+                          <label for="exampleFormControlInput1"> (الاسم(اختياري</label>
                           <input type="text" class="form-control" name="observer" id="exampleFormControlInput1">
-                      </div>
+                     
 
-                      <div class="form-group">
-                          <label for="exampleFormControlSelect1"> الجهة المسئولة</label>
-                          <select class="form-control" name="resposible" id="exampleFormControlSelect1">
-                              <option>ادارة السلامة</option>
-                              <option>ادارة الكهرباء</option>
-                              <option>ادارة الورش</option>
+                          @unless (auth()->user()->admin == 0)
+                          <label for="exampleFormControlSelect1">  في نطاق </label>
+                          <select class="form-control" name="responsible_area" id="exampleFormControlSelect1">
+                              <option>الادارة العامة للسلامة والصحة المهنية</option>
+                              <option>الادارة العامة للاطفاء</option>
+                              <option>الادارة العامة للبيئة</option>
+                              <option>الادارة العامة للشئون الفنية</option>
+                              <option>الادارة العامة للشئون الهندسية</option>
+                              <option>الادارة العامة للخدمات الهندسية</option>
+                              <option>الادارة العامة للهندسة المدنية</option>
+                              <option>الادارة العامة للصيانة</option>
+                              <option>الادارة العامة للكهرباء</option>
+                              <option>الادارة العامة لتخطيط الانتاج</option>
+                              <option>الادارة العامة للمرافق</option>
+                              <option>الادارة العامة للمعالجة</option>
+                              <option>الادارة العامة للالات الدوارة</option>
+                              <option>الادارة العامة للتحكم الالي</option>
+                              <option>الادارة العامة للحاسب الالي</option>
+                              <option>الادارة العامة للمعمل الكيماوي</option>
+                              <option>الادارة العامة للتفتيش الهندسي</option>
+                              <option>الادارة العامة للشئون الطبية</option>
+                              <option>الادارة العامة للشئون الادارية</option>
+                              <option>الادارة العامة للامن</option>
                           </select>
-                      </div>
-                      <div class="form-group" >
+
+                          
+                         
+                          <label for="exampleFormControlSelect1">الادارة المسئولة عن التنفيذ</label>
+                          <select class="form-control" name="responsible_correction" id="exampleFormControlSelect1">
+                          <option>الادارة العامة للسلامة والصحة المهنية</option>
+                              <option>الادارة العامة للاطفاء</option>
+                              <option>الادارة العامة للبيئة</option>
+                              <option>الادارة العامة للشئون الفنية</option>
+                              <option>الادارة العامة للشئون الهندسية</option>
+                              <option>الادارة العامة للخدمات الهندسية</option>
+                              <option>الادارة العامة للهندسة المدنية</option>
+                              <option>الادارة العامة للصيانة</option>
+                              <option>الادارة العامة للكهرباء</option>
+                              <option>الادارة العامة لتخطيط الانتاج</option>
+                              <option>الادارة العامة للمرافق</option>
+                              <option>الادارة العامة للمعالجة</option>
+                              <option>الادارة العامة للالات الدوارة</option>
+                              <option>الادارة العامة للتحكم الالي</option>
+                              <option>الادارة العامة للحاسب الالي</option>
+                              <option>الادارة العامة للمعمل الكيماوي</option>
+                              <option>الادارة العامة للتفتيش الهندسي</option>
+                              <option>الادارة العامة للشئون الطبية</option>
+                              <option>الادارة العامة للشئون الادارية</option>
+                              <option>الادارة العامة للامن</option>
+                          </select>
+                          @endunless
+                      
                           <label for="exampleFormControlTextarea1"> ارفاق صورة </label>
                           <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1" enctype="multipart/form-data">
-                      </div>
-                      <br><br>
-                      <input type="submit" class="btn btn-primary btn-lg" value="ارسال">
-                  </form>
+                      
+
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-center">
+                                    <input type="submit" class="btn btn-primary btn-lg" value="ارسال">
+                                        </form>
               </div>
         </div>
 

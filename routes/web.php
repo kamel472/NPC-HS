@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::resource('observations', 'ObservationController');
 Route::patch('observations/{id}/correctiveAction', 'ObservationController@correctiveAction')->name('observations.correctiveAction');
+Route::patch('observations/{id}/chairmanVisible', 'ObservationController@chairmanVisible')->name('observations.chairmanVisible');
 Route::get('observation/stats', 'ObservationController@stats')->name('observations.stats');
 
 

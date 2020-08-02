@@ -5,13 +5,13 @@
        
         
         <!-- /. NAV SIDE  -->
-            <div>
-                <div id="page-inner">
+        <div>
+          <div id="page-inner">
                   
                   @include('includes.create-observation')
 
                   <br><br>
-
+                  
                   <div class="container">
                       <div class="row">
 
@@ -23,53 +23,6 @@
                           </div>
                         </div>
 
-                        @can('viewAny', App\Observation::class)
-                        <div>
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              في نطاق
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="observations?area=HSE">ادارة السلامة</a>
-                              <a class="dropdown-item" href="observations?area=elect">ادارة الكهرباء</a>
-                              <a class="dropdown-item" href="observations?area=workshop">ادارة الورش</a>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div>
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              مسئول التنفيذ
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="observations?correction=HSE">ادارة السلامة</a>
-                              <a class="dropdown-item" href="observations?correction=elect">ادارة الكهرباء</a>
-                              <a class="dropdown-item" href="observations?correction=workshop">ادارة الورش</a>
-                            </div>
-                          </div>
-                        </div>
-                       
-                        @endcan
-
-                        <div>
-                          <div class="btn-group" >
-                            <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              التصنيف
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="observations?category=workingAthieght">عمل علي ارتفاعات</a>
-                              <a class="dropdown-item" href="observations?category=lifting">الرفع والتصبين</a>
-                              <a class="dropdown-item" href="observations?category=housekeeping">النظافة والترتيب</a>
-                              <a class="dropdown-item" href="observations?category=elec">مخاطر الكهرباء</a>
-                              <a class="dropdown-item" href="observations?category=fire">مخاطر الحريق</a>
-                              <a class="dropdown-item" href="observations?category=mech">مخاطر ميكانيكية</a>
-                              <a class="dropdown-item" href="observations?category=chem">مخاطر كيميائية</a>
-                              <a class="dropdown-item" href="observations?category=bio">مخاطر بيولوجية</a>
-                              <a class="dropdown-item" href="observations?category=other">اخري</a>
-                            </div>
-                          </div>
-                        </div>
                         <div >
                           <div class="btn-group"  >
                             <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,7 +49,6 @@
                                 </div>
                             </div>
                           </div>
-
                           
                         </div>
                       </div>
@@ -123,24 +75,23 @@
                       <div class="row">
                         <div class="col-md-12">
                           <h1 class="page-head-line">ملاحظات السلامة</h1>
-                                  <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
-                          <div class="panel panel-primary">
+                                  <h4 class="page-subhead-line"></h4>
+                          <div>
                             <!-- Table -->
                             <div class= "observation">
                               <table class="table">
                                 <thead>
+
+                                  <thead class="thead-dark">
                                   <tr>
-                                    @if (auth()->user()->name == 'safety_admin')
-                                    <td>تعديل</td>
-                                    <td>حذف</td>
-                                    @endif
-                                    <td>الحالة</td>
-                                    <td > الادارة المسئولة عن التنفيذ </td>
-                                    <td >في نطاق </td> 
-                                    <td>التصنيف</td>
-                                    <td >المصدر</td>
-                                    <td >التاريخ</td>
-                                    <td>الملاحظة</td>
+                                    <th scope="col" ></th>
+                                    <th scope="col" ></th>
+                                    <th scope="col" ></th>
+                                    <th scope="col" > الادارة المسئولة عن التنفيذ </th>
+                                    <th scope="col" >في نطاق </th>
+                                    <th scope="col" >المصدر</th>
+                                    <th scope="col" >التاريخ</th>
+                                    <th scope="col" >الملاحظة</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -155,7 +106,8 @@
                                             <tr class="list-group-item-success">
                                         @endif
 
-                                        @if (auth()->user()->name == 'safety_admin')   
+                                    @if (auth()->user()->admin == 1 && $observation->showSafety == 0)   
+                                    <td></td>
                                     <td>
                                       @include('includes.edit-observation')
                                     </td>
@@ -167,13 +119,42 @@
                                         <input type="submit" class="btn btn-danger" value="حذف" onclick="observationDelete(this)"> 
                                       </form>
                                     </td>
+                                    
+                                    @elseif (auth()->user()->name == 'safety_admin') 
+                                    @if ($observation->showChairman == 0) 
+                                    <td>
+                                      <form method="post" action="{{route('observations.chairmanVisible' , $observation->id)}}">
+                                        @csrf
+                                        @method('patch')
+                                        <input type="submit" class="btn btn-primary" value="اعتماد" > 
+                                      </form>
+                                    </td>
+                                    @else
+                                    <td></td>
+                                    @endif
+
+                                    <td>
+                                      @include('includes.edit-observation')
+                                    </td>
+
+                                    <td>
+                                      <form method="post" action="{{route('observations.destroy' , $observation->id)}}" id="observation-destroy">
+                                        @csrf
+                                        @method('delete')
+                                        <input type="submit" class="btn btn-danger" value="حذف" onclick="observationDelete(this)"> 
+                                      </form>
+                                    </td>
+
+                                    @else
+                                    <td> </td>
+                                    <td></td>
+                                    <td></td>
                                     @endif
                                     
 
-                                    <td>{{$observation->status}}</td>
+                                 
                                     <td>{{$observation->responsible_correction}} </td>
                                     <td>{{$observation->responsible_area}} </td>
-                                    <td>{{$observation->category}} </td>
                                     <td>{{$observation->source}} </td>
                                     <td>{{$observation->created_at}} </td>
                                     
@@ -186,7 +167,7 @@
                                 </tbody>
                               </table>
                             </div> 
-                          </div>
+                          </div> 
                         </div>
                       </div>
                     </div>

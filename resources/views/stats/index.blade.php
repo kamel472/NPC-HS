@@ -25,7 +25,7 @@
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover">
-                                    <thead>
+                                    <thead class="thead-dark">
                                         
                                         <tr>
                                             <th>  التراكمي</th>
@@ -84,7 +84,7 @@
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover">
-                                    <thead>
+                                    <thead class="thead-dark">
                                         <tr>
                                             <th>  التراكمي</th>
                                             <th> الشهر الحالي</th>

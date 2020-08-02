@@ -1,7 +1,14 @@
  <!--Edit Comment Button-->
  <div  >
                         
-                        <a  href="" class="btn btn-primary" data-target="#modalEditComment{{$observation->id}}" data-toggle="modal" role="button">تعديل</a>
+                        <a  href="" class="btn btn-primary " data-target="#modalEditComment{{$observation->id}}" data-toggle="modal" role="button">
+                        
+                        @if(auth()->user()->name == 'safety_admin')
+                        تعديل
+                        @elseif(auth()->user()->admin == 1)
+                        تعديل/ اعتماد
+                        @endif
+                        </a>
                         &nbsp;&nbsp;
 
                         <!--Edit Comment Modal-->
@@ -22,19 +29,7 @@
 
                         <label for="exampleFormControlTextarea1">وصف تفصيلي</label>
                         <textarea   class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3">{{$observation->desc}}</textarea>
-                      
-                      
-                          <label for="exampleFormControlSelect1">التصنيف </label>
-                          <select class="form-control" name="category" id="exampleFormControlSelect1" >
-                              <option >عمل علي ارتفاعات </option>
-                              <option>الرفع والتصبين</option>
-                              <option> النظافة والترتيب</option>
-                              <option> مخاطر الكهرباء </option>
-                              <option>  مخاطر الحريق</option>
-                              <option> مخاطر ميكانيكية</option>
-                              <option> اخري</option>
-
-                          </select>
+                    
 
                           <label for="exampleFormControlSelect1">مصدر الملاحظة </label>
                           <select class="form-control" name="source" id="exampleFormControlSelect1" >
@@ -46,16 +41,50 @@
 
                           <label for="exampleFormControlSelect1">  في نطاق</label>
                           <select class="form-control" name="responsible_area" id="exampleFormControlSelect1">
-                              <option> ادارة السلامة   </option>
-                              <option> ادارة الكهرباء  </option>
-                              <option> ادارة الورش  </option>
+                              <option>الادارة العامة للسلامة والصحة المهنية</option>
+                              <option>الادارة العامة للاطفاء</option>
+                              <option>الادارة العامة للبيئة</option>
+                              <option>الادارة العامة للشئون الفنية</option>
+                              <option>الادارة العامة للشئون الهندسية</option>
+                              <option>الادارة العامة للخدمات الهندسية</option>
+                              <option>الادارة العامة للهندسة المدنية</option>
+                              <option>الادارة العامة للصيانة</option>
+                              <option>الادارة العامة للكهرباء</option>
+                              <option>الادارة العامة لتخطيط الانتاج</option>
+                              <option>الادارة العامة للمرافق</option>
+                              <option>الادارة العامة للمعالجة</option>
+                              <option>الادارة العامة للالات الدوارة</option>
+                              <option>الادارة العامة للتحكم الالي</option>
+                              <option>الادارة العامة للحاسب الالي</option>
+                              <option>الادارة العامة للمعمل الكيماوي</option>
+                              <option>الادارة العامة للتفتيش الهندسي</option>
+                              <option>الادارة العامة للشئون الطبية</option>
+                              <option>الادارة العامة للشئون الادارية</option>
+                              <option>الادارة العامة للامن</option>
                           </select>
 
                           <label for="exampleFormControlSelect1"> الادارة المسئولة عن التنفيذ</label>
                           <select class="form-control" name="responsible_correction" id="exampleFormControlSelect1">
-                              <option> ادارة السلامة   </option>
-                              <option> ادارة الكهرباء  </option>
-                              <option> ادارة الورش  </option>
+                              <option>الادارة العامة للسلامة والصحة المهنية</option>
+                              <option>الادارة العامة للاطفاء</option>
+                              <option>الادارة العامة للبيئة</option>
+                              <option>الادارة العامة للشئون الفنية</option>
+                              <option>الادارة العامة للشئون الهندسية</option>
+                              <option>الادارة العامة للخدمات الهندسية</option>
+                              <option>الادارة العامة للهندسة المدنية</option>
+                              <option>الادارة العامة للصيانة</option>
+                              <option>الادارة العامة للكهرباء</option>
+                              <option>الادارة العامة لتخطيط الانتاج</option>
+                              <option>الادارة العامة للمرافق</option>
+                              <option>الادارة العامة للمعالجة</option>
+                              <option>الادارة العامة للالات الدوارة</option>
+                              <option>الادارة العامة للتحكم الالي</option>
+                              <option>الادارة العامة للحاسب الالي</option>
+                              <option>الادارة العامة للمعمل الكيماوي</option>
+                              <option>الادارة العامة للتفتيش الهندسي</option>
+                              <option>الادارة العامة للشئون الطبية</option>
+                              <option>الادارة العامة للشئون الادارية</option>
+                              <option>الادارة العامة للامن</option>
                           </select>
                         
                                 <label for="exampleFormControlSelect1"> حالة الملاحظة</label>
@@ -75,8 +104,10 @@
 
                                     </div>
                                     <div class="modal-footer d-flex justify-content-center">
-                                        <button class="btn btn-info btn-sm">تعديل </button>
+                                        <button class="btn btn-info btn-sm"> ارسل لادارة السلامة والادارة المنفذة</button>
                                         </form>
+
+
                                     </div>
                                 </div>
                             </div>

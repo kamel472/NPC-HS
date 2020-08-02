@@ -111,7 +111,6 @@
               <div class="container">
               <div class="form-group" >
                 @if ($observation->photo)
-                  <label for="exampleFormControlTextarea1">   الصورة المرفقة </label>
                   <img src="{{ asset('storage/images/'.$observation->photo) }}" alt="image" style='max-width: 75%;'>
                 @endif
 

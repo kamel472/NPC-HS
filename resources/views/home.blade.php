@@ -9,10 +9,18 @@
         <!-- /. NAV SIDE  -->
             
                 <div id="page-inner" style="background-image: url('{{ asset('storage/images/nice.jpg') }}');" >
-              
+                    <div class="row">
+                        <div class="col-12">
+                            <div >
+                                    <img src="{{ asset('storage/images/nasr.jpg') }} " alt="image" style="width:100%;
+                                    height:auto;" >
+                            </div>
+                        </div>
+                    </div>
+                    <br>
 
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="main-box mb-red">
                                 <a href="{{route('observations.create')}}">
                                     <i class="fa fa-pencil-square-o fa-5x" aria-hidden="true"></i>
@@ -21,7 +29,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="main-box mb-dull">
                                 <a href="{{route('observations.index')}}">
                                     <i class="fa fa-bars fa-5x" aria-hidden="true"></i>
@@ -29,7 +37,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="main-box mb-pink">
                                 <a href="{{route('permits.index')}}">
                                     <i class="fa fa-file-text-o fa-5x"></i>
@@ -40,8 +48,9 @@
     
                     </div>
 
+
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="main-box mb-red">
                                 <a href="{{route('courses.index')}}">
                                     <i class="fa fa-file-video-o fa-5x" aria-hidden="true"></i>
@@ -50,7 +59,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="main-box mb-dull">
                                 <a href="{{route('stats.index')}}">
                                     <i class="fa fa-bar-chart fa-5x" aria-hidden="true"></i>
@@ -58,7 +67,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="main-box mb-red">
                                 <a href="">
                                     <i class="fas fa-user-injured fa-5x" aria-hidden="true"></i>
@@ -69,10 +78,7 @@
                         </div>
     
                     </div>
-
-                    
-
-                    
+            
   </div>
         <!-- /. PAGE WRAPPER  -->
 

@@ -22,12 +22,12 @@
                                         
                                     
                               <label for="exampleFormControlTextarea1">مكان العمل </label>
-                              <input class="form-control" name="location" id="exampleFormControlTextarea1" rows="3"></input>
+                              <input class="form-control" name="location" style="text-align:right" id="exampleFormControlTextarea1" rows="3"></input>
                            
-
+                              <br>
                               <label for="exampleFormControlTextarea1">وصف العمل</label>
-                              <input class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3"></input>
-
+                              <input class="form-control" name="desc" style="text-align:right" id="exampleFormControlTextarea1" rows="3"></input>
+                              <br>
                               <label>نوع التصريح </label>
                               <br>
                               <fieldset> 
@@ -43,8 +43,8 @@
                                 <br>
                                 <input  type="checkbox" name="type[]"  value="عزل كهرباء ">عزل كهرباء</input>
                             </fieldset>
-
-                            <label for="exampleFormControlSelect1"> التأمين</label>
+                            <br>
+                            <label for="exampleFormControlSelect1">  وسيلة التأمين</label>
                             <select class="form-control" name="fire_fighting" id="exampleFormControlSelect1" >
                               <option >فرد اطفاء </option>
                               <option>سيارة اطفاء</option>

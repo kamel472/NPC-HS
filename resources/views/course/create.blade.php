@@ -9,17 +9,17 @@
                     <div class="alert alert-danger" style="text-align:right">
                         <ul>
                         @foreach ($errors->all() as $error)
-                        <p>{{ $error }} -</p>
+                          <p>{{ $error }} -</p>
                         @endforeach
                         </ul>
                     </div>
-                    @elseif(session('message'))
+                  @elseif(session('message'))
                     <div class="alert alert-success" style="text-align:right">
-                    <p>{{ session('message') }} -</p>
+                      <p>{{ session('message') }} -</p>
                     </div>
                   @endif
                   <h1 class="page-head-line"> اضافة كورس</h1>
-                  <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
+                  <h1 class="page-subhead-line"></h1>
                   <form method="POST" action="{{route('courses.store')}}"  enctype="multipart/form-data">
                       @csrf
 
@@ -40,7 +40,7 @@
                       <br><br>
                       <input type="submit" class="btn btn-primary btn-lg" value="رفع">
                   </form>
-              </div>
+            </div>
         </div>
 
       </div>

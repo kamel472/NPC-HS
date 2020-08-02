@@ -40,11 +40,11 @@
                  <div class="row">
                     <div class="col-md-12">
                         <div >
-
+                        
                           <!-- Table -->
                           <div class= "observation">
                               <table class="table table-striped">
-
+                              @if($permits->count()>0)
                               <thead>
 
                                   <thead class="thead-dark">
@@ -85,6 +85,10 @@
                                     </tr>
 
                                     @endforeach
+
+                                    @else
+                                    <h2> لايوجد تصاريح مسجلة</h2>
+                                    @endif
 
                                 </tbody>
 

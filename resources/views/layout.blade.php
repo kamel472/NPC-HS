@@ -30,12 +30,26 @@
       
         
       <nav class="navbar  navbar-expand navbar-primary bg-primary scrolling-navbar">
-        <div class="container">
+       
+        
+        
+        
+        <!-- Right Side Of Navbar -->
+        
+            <!-- Authentication Links -->
+            @guest
+                <a class="nav-link" style="color:white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                @if (Route::has('register'))   
+                <a class="nav-link" style="color:white" href="{{ route('register') }}">{{ __('Register') }}</a>   
+            @endif
+            @else
+
+            <div class="container">
         
         <!-- Brand -->
-        <a class="navbar-brand waves-effect" href="{{'/home'}}">
-        <strong style="color:white">Ask</strong>
-        </a>
+        <a  href="{{'/home'}}">
+        <h2 style="color:white">الصفحة الرئيسية</h2>
+        </a> 	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 
         
         <!-- Collapse -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -58,24 +72,13 @@
               
             </div>
           </li>
+          
         
           <li class="nav-item active" >
             <a class="nav-link waves-effect" href="{{route('permits.index')}}" style="color:white">
             تصاريح العمل  </a>
         </li>
             </ul>
-        
-        
-        
-        <!-- Right Side Of Navbar -->
-        
-            <!-- Authentication Links -->
-            @guest
-                <a class="nav-link" style="color:white" href="{{ route('login') }}">{{ __('Login') }}</a>
-                @if (Route::has('register'))   
-                <a class="nav-link" style="color:white" href="{{ route('register') }}">{{ __('Register') }}</a>   
-            @endif
-            @else
         
             <div class="dropdown">
             <a class="dropdown-toggle" type="button" id="dropdownMenuButton" 
@@ -107,10 +110,9 @@
 
         @yield('body')
 
-
-
-        <div id="footer-sec">
-        &copy; 2014 YourCompany | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
+        <div id="footer-sec" style="height: 60px;">
+        <p>&copy;2020 Nasr Petroleum Company | Design By : Kamel Mohamed</p><br>
+        
     </div>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
